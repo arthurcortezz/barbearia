@@ -1,0 +1,8 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  font-family: Roboto,Trebuchet MS,Helvetica,Arial,sans-serif;
+  --toastify-color-dark: #121212;
+  --toastify-color-error: #e74c3c;
+  --toastify-color-success: #07bc0c;
+}
