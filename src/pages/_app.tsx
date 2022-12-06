@@ -9,7 +9,7 @@ import { conta } from "../types";
 import { useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [usuario, setUsuario] = useState<conta | null>(null);
+  const [usuario, setUsuario] = useState<number | null>(null);
   return (
     <>
       <Head>
