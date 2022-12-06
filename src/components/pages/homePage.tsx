@@ -3,6 +3,8 @@ import { Button, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 
 import { linksUrls } from "../../types";
 import { NavbarContainer, SimpleLabelLink, SimpleText } from "../";
+import { useContext } from "react";
+import { GlobalContext } from "../../context";
 
 let linkList: Array<linksUrls> = [
   {
@@ -15,7 +17,7 @@ let linkList: Array<linksUrls> = [
   { url: "", text: "", image: true },
   { url: "midia", text: "MÍDIA" },
   { url: "agendamento", text: "AGENDAMENTO" },
-  { url: "blog", text: "BLOG" },
+  { url: "conta", text: "CONTA" },
   { url: "contato", text: "CONTATO" },
 ];
 export default function HomePage() {

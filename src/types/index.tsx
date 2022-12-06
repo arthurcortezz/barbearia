@@ -3,3 +3,9 @@ export interface linksUrls {
   text: string;
   image?: boolean;
 }
+export interface conta {
+  nome: string;
+  celular: string;
+  email: string;
+  senha: string;
+}

@@ -6,10 +6,6 @@ class CommentController extends Controller {
   }
 
   async criarAgendamento(object: any) {
-    console.log(
-      "🚀 ~ file: agendamentoController.ts:9 ~ CommentController ~ criarAgendamento ~ object",
-      object
-    );
     try {
       let response = await this.api.post("/criar", object);
       return response.data;

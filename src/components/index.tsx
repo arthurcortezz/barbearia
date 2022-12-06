@@ -5,6 +5,8 @@ export { default as SimpleText } from "./texts/simpleText";
 
 export { default as SimpleInput } from "./inputs/simpleInput";
 
+export { default as SimpleSelect } from "./selects/simpleSelect";
+
 export { default as NavbarContainer } from "./containers/navbarContainer";
 
 export { default as MessageToast } from "../services/MessageToast";

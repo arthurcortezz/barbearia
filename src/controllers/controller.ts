@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 export class Controller {
   api: any;
@@ -14,10 +14,11 @@ export class Controller {
     return { message: body };
   }
 
-  async getReturn(response: AxiosResponse) {
-    const data = response.data;
-    if (data.message) {
-      return data.message;
+  async getReturn(response: any) {
+    const objeto = JSON.stringify(response);
+    const contact = JSON.parse(objeto);
+    if (contact) {
+      return contact.content;
     } else throw new Error("Message was not received.");
   }
 }
