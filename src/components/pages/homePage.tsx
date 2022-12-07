@@ -2,7 +2,7 @@ import router from "next/router";
 import { Button, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 
 import { linksUrls } from "../../types";
-import { NavbarContainer, SimpleLabelLink, SimpleText } from "../";
+import { NavbarContainer, SimpleLabelLink, SimpleText, BackgroundContainer } from "../";
 
 let linkList: Array<linksUrls> = [
   {
@@ -21,7 +21,7 @@ let linkList: Array<linksUrls> = [
 export default function HomePage() {
   const [isLargerThan] = useMediaQuery("(min-width: 960px)");
   return (
-    <Flex direction={"column"} bg={"rgba(0,0,0,0.1) url('bg.jpg')"} h={"100vh"} overflow={"hidden"}>
+    <BackgroundContainer>
       <Flex
         direction={"row"}
         mx={"10%"}
@@ -29,19 +29,22 @@ export default function HomePage() {
         p={"10px"}
         align={"center"}>
         <NavbarContainer justify={"center"} w={"100%"}>
-          {linkList?.map((e: any, key: any) =>
-            e.image ? (
-              <Image
-                key={key}
-                w={isLargerThan ? "140" : "70"}
-                h={isLargerThan ? "140" : "70"}
-                alt="logo"
-                src="banner.png"
-                mx={"10px"}
-              />
-            ) : (
-              isLargerThan && (
+          <Flex align={isLargerThan ? "center" : "left"}>
+            {linkList?.map((e: any, key: any) =>
+              e.image ? (
+                isLargerThan && (
+                  <Image
+                    key={key}
+                    w={isLargerThan ? "140" : "70"}
+                    h={isLargerThan ? "140" : "70"}
+                    alt="logo"
+                    src="banner.png"
+                    mx={"10px"}
+                  />
+                )
+              ) : (
                 <SimpleLabelLink
+                  fontSize={isLargerThan ? 19 : 10}
                   key={key}
                   link={true}
                   url={e.url}
@@ -49,8 +52,8 @@ export default function HomePage() {
                   onclick={() => router.push(`/${e.url}`)}
                 />
               )
-            )
-          )}
+            )}
+          </Flex>
         </NavbarContainer>
       </Flex>
       <Flex py={"6%"} align={"center"} direction={"column"}>
@@ -70,7 +73,12 @@ export default function HomePage() {
           AGENDE SEU HORARIO
         </Button>
       </Flex>
-      <Flex mt={isLargerThan ? "55px" : "100px"} w={"100%"} h={"100%"} justify={"center"}>
+      <Flex
+        mt={isLargerThan ? "55px" : "100px"}
+        w={"100%"}
+        h={"100vh"}
+        justify={"center"}
+        maxH={"200px"}>
         <Flex
           bg={"black"}
           w={"90%"}
@@ -116,6 +124,6 @@ export default function HomePage() {
           </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    </BackgroundContainer>
   );
 }

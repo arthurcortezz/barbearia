@@ -16,7 +16,7 @@ export default function Input({ opcoes, name, value, label, onChange }: Props) {
   };
   return (
     <Flex direction={"column"} w={"100%"} textAlign={"left"} p={"10px"}>
-      <SimpleText fontSize={14} text={name} color={"black"} />
+      <SimpleText fontSize={14} text={name} color={"white"} />
       <InputGroup>
         <Select
           value={value}

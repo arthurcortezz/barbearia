@@ -1,6 +1,6 @@
-import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Flex, useMediaQuery } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { SimpleInput, SimpleText } from "../";
+import { SimpleInput, SimpleText, SimpleButton } from "../";
 import { AgendamentoController } from "../../controllers";
 
 export default function AgendamentoPage() {
@@ -68,14 +68,7 @@ export default function AgendamentoPage() {
           value={local}
           onChange={(e: any) => setLocal(e.target.value)}
         />
-        <Button
-          mt={"40px"}
-          fontSize={isLargerThan ? 16 : 12}
-          bg={"green.400"}
-          color={"black"}
-          onClick={() => handleOnChange()}>
-          Enviar
-        </Button>
+        <SimpleButton name={"Enviar"} handleOnChange={handleOnChange} />
       </Flex>
     </Flex>
   );

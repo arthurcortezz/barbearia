@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalContextProvider setUsuario={setUsuario}>
         <ChakraProvider resetCSS={true} theme={theme}>
           <Component {...pageProps} />
-          <ToastContainer />
+          <ToastContainer theme="dark" />
         </ChakraProvider>
       </GlobalContextProvider>
     </>

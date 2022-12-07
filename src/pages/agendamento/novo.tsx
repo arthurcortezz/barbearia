@@ -3,8 +3,9 @@ import { useContext, useState } from "react";
 import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
 
 import { GlobalContext } from "../../context";
-import { SimpleSelect, SimpleText } from "../../components";
+import { BackgroundContainer, SimpleButton, SimpleSelect, SimpleText } from "../../components";
 import { AgendamentoController, ContaController } from "../../controllers";
+import { MessageToast } from "../../services";
 
 export default function AgendamentoPage() {
   const global = useContext(GlobalContext);
@@ -14,88 +15,76 @@ export default function AgendamentoPage() {
   const [isLargerThan] = useMediaQuery("(min-width: 960px)");
 
   const handleOnChange = async () => {
-    const response = await ContaController.buscarUsuario(global.user);
-    const stringJson = JSON.stringify(response);
-    const result = JSON.parse(stringJson);
-    const objeto = {
-      data,
-      horario,
-      local,
-      nome: result.data.nome,
-      email: result.data.email,
-      celular: result.data.celular,
-    };
-    await AgendamentoController.criarAgendamento(objeto);
+    try {
+      const objeto = {
+        nome: global.user?.nome,
+        email: global.user?.email,
+        celular: global.user?.celular,
+        data: data,
+        horario: horario,
+        local: local,
+      };
+      await AgendamentoController.criarAgendamento(objeto);
+      MessageToast.sucesso("Agendamento feito com sucesso!");
+      router.push("/agendamento/listar");
+    } catch (error: any) {
+      MessageToast.erro("Ocorreu um erro.");
+    }
   };
 
   return (
-    <Flex w={"100%"} align={"center"} direction={"column"} h={"100vh"}>
-      <Flex
-        color={"black"}
-        position={"absolute"}
-        top={5}
-        left={20}
-        onClick={router.back}
-        cursor={"pointer"}>
-        VOLTAR
-      </Flex>
-      <Flex w={"40%"} direction={"column"} align={"center"} mt={"60px"}>
-        <SimpleText color={"black"} fontSize={20} text={"Agende o seu horário"} />
-        <SimpleSelect
-          name={"Data: "}
-          label={"Selecione a data"}
-          value={data}
-          opcoes={[
-            { label: "Segunda", value: "seg" },
-            { label: "Terça-Feira", value: "ter" },
-            { label: "Quarta-Feira", value: "qua" },
-            { label: "Quinta-Feira", value: "qui" },
-            { label: "Sexta-Feira", value: "sex" },
-            { label: "Sábado", value: "sab" },
-          ]}
-          onChange={(e: any) => setData(e.target.value)}
-        />
-        {data && (
+    <BackgroundContainer pageName={"Novo agendamento"} rota={"/agendamento"}>
+      <Flex w={"100%"} align={"center"} direction={"column"} h={"100vh"}>
+        <Flex w={"40%"} direction={"column"} align={"center"} mt={"60px"}>
           <SimpleSelect
-            name={"Horário: "}
-            label={"Selecione o horário"}
-            value={horario}
+            name={"Data: "}
+            label={"Selecione a data"}
+            value={data}
             opcoes={[
-              { label: "09:00", value: "9" },
-              { label: "10:00", value: "10" },
-              { label: "11:00", value: "11" },
-              { label: "13:00", value: "13" },
-              { label: "14:00", value: "14" },
-              { label: "15:00", value: "15" },
-              { label: "16:00", value: "16" },
-              { label: "17:00", value: "17" },
+              { label: "Segunda", value: "Segunda" },
+              { label: "Terça-Feira", value: "Terça-Feira" },
+              { label: "Quarta-Feira", value: "Quarta-Feira" },
+              { label: "Quinta-Feira", value: "Quinta-Feira" },
+              { label: "Sexta-Feira", value: "Sexta-Feira" },
+              { label: "Sábado", value: "Sábado" },
             ]}
-            onChange={(e: any) => setHorario(e.target.value)}
+            onChange={(e: any) => setData(e.target.value)}
           />
-        )}
-        {data && horario && (
-          <SimpleSelect
-            name={"Local: "}
-            label={"Selecione o local"}
-            value={local}
-            opcoes={[
-              { label: "Ponta Verde", value: "pv" },
-              { label: "Eustáquio Gomes", value: "eg" },
-            ]}
-            onChange={(e: any) => setLocal(e.target.value)}
-          />
-        )}
-        {data && horario && local && (
-          <Button
-            mt={"40px"}
-            fontSize={isLargerThan ? 16 : 12}
-            bg={"green.400"}
-            color={"black"}
-            onClick={() => handleOnChange()}>
-            Enviar
-          </Button>
-        )}
+          {data && (
+            <SimpleSelect
+              name={"Horário: "}
+              label={"Selecione o horário"}
+              value={horario}
+              opcoes={[
+                { label: "09:00", value: "09:00" },
+                { label: "10:00", value: "10:00" },
+                { label: "11:00", value: "11:00" },
+                { label: "13:00", value: "13:00" },
+                { label: "14:00", value: "14:00" },
+                { label: "15:00", value: "15:00" },
+                { label: "16:00", value: "16:00" },
+                { label: "17:00", value: "17:00" },
+              ]}
+              onChange={(e: any) => setHorario(e.target.value)}
+            />
+          )}
+          {data && horario && (
+            <SimpleSelect
+              name={"Local: "}
+              label={"Selecione o local"}
+              value={local}
+              opcoes={[
+                { label: "Ponta Verde", value: "Ponta Verde" },
+                { label: "Eustáquio Gomes", value: "Eustáquio Gomes" },
+              ]}
+              onChange={(e: any) => setLocal(e.target.value)}
+            />
+          )}
+          {data && horario && local && (
+            <SimpleButton name={"Enviar"} handleOnChange={() => handleOnChange()} />
+          )}
+        </Flex>
       </Flex>
-    </Flex>
+    </BackgroundContainer>
   );
 }
