@@ -3,8 +3,6 @@ import { Button, Flex, Image, useMediaQuery } from "@chakra-ui/react";
 
 import { linksUrls } from "../../types";
 import { NavbarContainer, SimpleLabelLink, SimpleText } from "../";
-import { useContext } from "react";
-import { GlobalContext } from "../../context";
 
 let linkList: Array<linksUrls> = [
   {
