@@ -39,7 +39,7 @@ class CommentController extends Controller {
       throw error;
     }
   }
-  async buscarUsuario(id: number | null): Promise<JSON> {
+  async buscarUsuario(id: conta | null): Promise<JSON> {
     try {
       let response = await this.api.get("/buscarUsuario", { params: { id } });
       return response;
