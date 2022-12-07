@@ -8,9 +8,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "../styles/globals.css";
 import { theme } from "../styles/theme";
 import { GlobalContextProvider } from "../context/GlobalContext";
+import { conta } from "../types";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [usuario, setUsuario] = useState<number | null>(null);
+  const [usuario, setUsuario] = useState<conta | null>(null);
   return (
     <>
       <Head>
