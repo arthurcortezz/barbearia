@@ -1,12 +1,13 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import type { AppProps } from "next/app";
-import { theme } from "../styles/theme";
-import "../styles/globals.css";
-import { ToastContainer } from "react-toastify";
 import Head from "next/head";
-import { GlobalContextProvider } from "../context/GlobalContext";
-import { conta } from "../types";
 import { useState } from "react";
+import type { AppProps } from "next/app";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { ChakraProvider } from "@chakra-ui/react";
+
+import "../styles/globals.css";
+import { theme } from "../styles/theme";
+import { GlobalContextProvider } from "../context/GlobalContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [usuario, setUsuario] = useState<number | null>(null);
@@ -16,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Barber Shop</title>
       </Head>
       <GlobalContextProvider setUsuario={setUsuario}>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider resetCSS={true} theme={theme}>
           <Component {...pageProps} />
           <ToastContainer />
         </ChakraProvider>

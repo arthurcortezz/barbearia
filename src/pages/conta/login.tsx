@@ -2,9 +2,10 @@ import router from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
 
-import { SimpleInput, SimpleText } from "../../components";
+import { GetReturnJson, SimpleInput, SimpleText } from "../../components";
 import { ContaController } from "../../controllers";
 import { GlobalContext } from "../../context";
+import { MessageToast } from "../../services";
 
 export default function AgendamentoPage() {
   const global = useContext(GlobalContext);
@@ -14,14 +15,14 @@ export default function AgendamentoPage() {
   const [isLargerThan] = useMediaQuery("(min-width: 960px)");
 
   const handleOnChange = async () => {
-    const result = await ContaController.login(email, senha);
-    const obj = JSON.stringify(result);
-    const contact = JSON.parse(obj);
-    if (contact.content.length > 0) {
-      global.setUsuario(contact.content[0]);
+    const result = await ContaController.login(email, senha).catch(err =>
+      MessageToast.erro("Usuário e/ou senha incorretos")
+    );
+    if (result) {
+      const usuario = await GetReturnJson(result);
+      global.setUsuario(usuario);
+      MessageToast.sucesso("Logado com sucesso!");
       router.push("/");
-    } else {
-      throw "Usuário e/ou senha incorretos!";
     }
   };
 

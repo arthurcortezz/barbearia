@@ -2,8 +2,9 @@ import router from "next/router";
 import { useEffect, useState } from "react";
 import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
 
-import { MessageToast, SimpleInput, SimpleText } from "../../components";
+import { MessageToast } from "../../services";
 import { ContaController } from "../../controllers";
+import { SimpleInput, SimpleText } from "../../components";
 
 export default function AgendamentoPage() {
   const [nome, setNome] = useState<string>("");
@@ -16,10 +17,11 @@ export default function AgendamentoPage() {
   const handleOnChange = async () => {
     if (senha === cSenha) {
       const objeto = { nome, celular, email, senha };
-      MessageToast.sucess("teste");
       await ContaController.cadastro(objeto);
+      MessageToast.sucesso("Usuário cadastrado com sucesso!");
+      router.push("/conta/login");
     } else {
-      throw "As senhas precisam ser iguais!";
+      MessageToast.erro("As senhas precisam ser iguais!");
     }
   };
 
@@ -34,7 +36,7 @@ export default function AgendamentoPage() {
         cursor={"pointer"}>
         VOLTAR
       </Flex>
-      <SimpleText color={"black"} fontSize={20} text={"Faça login"} />
+      <SimpleText color={"black"} fontSize={20} text={"Faça o registro da sua conta"} />
       <Flex w={"40%"} direction={"column"}>
         <SimpleInput
           name={"Nome: "}

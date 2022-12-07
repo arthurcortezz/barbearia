@@ -1,3 +1,4 @@
+import { MessageToast } from "../services";
 import { conta } from "../types";
 import { Controller } from "./controller";
 
@@ -10,6 +11,7 @@ class CommentController extends Controller {
       const retorno = await this.verificaEmail(objeto.email);
       const emailValido = await this.getReturn(retorno);
       if (emailValido.length > 0) {
+        MessageToast.erro("Email já cadastrado!");
         throw "Email já cadastrado!";
       } else {
         const response = await this.api.post("/cadastro", objeto);

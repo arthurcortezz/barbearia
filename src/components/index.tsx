@@ -9,7 +9,7 @@ export { default as SimpleSelect } from "./selects/simpleSelect";
 
 export { default as NavbarContainer } from "./containers/navbarContainer";
 
-export { default as MessageToast } from "../services/MessageToast";
-
 export { default as AgendamentoPage } from "./pages/agendamentoPage";
 export { default as HomePage } from "./pages/homePage";
+
+export { default as GetReturnJson } from "../functions/getReturnJson";
