@@ -6,7 +6,8 @@ class CommentController extends Controller {
   constructor(route: string) {
     super(route);
   }
-  async cadastro(objeto: conta): Promise<JSON> {
+
+  async cadastro(objeto: conta) {
     try {
       const retorno = await this.verificaEmail(objeto.email);
       const emailValido = await this.getReturn(retorno);
@@ -14,7 +15,22 @@ class CommentController extends Controller {
         MessageToast.erro("Email já cadastrado!");
         throw "Email já cadastrado!";
       } else {
-        const response = await this.api.post("/cadastro", objeto);
+        const response = await this.api.post("/criar", objeto);
+        return response.data;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async editarUsuario(objeto: conta) {
+    try {
+      const retorno = await this.verificaEmail(objeto.email);
+      const emailValido = await this.getReturn(retorno);
+      if (emailValido.length > 0) {
+        MessageToast.erro("Email já cadastrado!");
+      } else {
+        const response = await this.api.post("/alterar", objeto);
         return response.data;
       }
     } catch (error) {

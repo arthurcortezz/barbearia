@@ -18,7 +18,7 @@ export default function SimpleLabelLink({ onclick, text, url, link, fontSize }: 
             text={text}
             fontSize={fontSize ? fontSize : 19}
             fontWeight={"bolder"}
-            p={"8px"}
+            p={"4px"}
             color={"white"}
           />
         </Link>

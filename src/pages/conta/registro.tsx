@@ -16,10 +16,14 @@ export default function AgendamentoPage() {
 
   const handleOnChange = async () => {
     if (senha === cSenha) {
-      const objeto = { nome, celular, email, senha };
-      await ContaController.cadastro(objeto);
-      MessageToast.sucesso("Usuário cadastrado com sucesso!");
-      router.push("/conta/login");
+      if (nome && celular && email && senha) {
+        const objeto = { nome, celular, email, senha, permissao: "usuario" };
+        await ContaController.cadastro(objeto);
+        MessageToast.sucesso("Usuário cadastrado com sucesso!");
+        router.push("/conta/login");
+      } else {
+        MessageToast.erro("Todos os campos são obrigatórios");
+      }
     } else {
       MessageToast.erro("As senhas precisam ser iguais!");
     }
@@ -28,7 +32,7 @@ export default function AgendamentoPage() {
   return (
     <BackgroundContainer pageName={"Registrar"} rota={"/conta"}>
       <Flex w={"100%"} justifyContent={"center"} align={"center"} direction={"column"}>
-        <Flex w={"40%"} direction={"column"}>
+        <Flex w={isLargerThan ? "40%" : "100%"} direction={"column"}>
           <SimpleInput
             name={"Nome: "}
             label={"Digite seu nome"}
@@ -71,7 +75,7 @@ export default function AgendamentoPage() {
           <Flex
             justifyContent={"center"}
             mt={"10px"}
-            onClick={() => router.push("/conta/login")}
+            onClick={() => router.push("conta/login")}
             cursor={"pointer"}>
             <SimpleText fontSize={13} text={"Já possui conta? Faça login clicando aqui."} />
           </Flex>

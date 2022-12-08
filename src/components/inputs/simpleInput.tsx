@@ -23,6 +23,7 @@ export default function Input({ type, name, value, label, onChange }: Props) {
       <SimpleText fontSize={14} text={name} color="white" />
       <InputGroup>
         <ChakraInput
+          h={isLargerThan ? "40px" : "25px"}
           type={type}
           value={value}
           borderColor={"black"}

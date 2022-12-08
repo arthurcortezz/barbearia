@@ -1,10 +1,10 @@
-import router from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Flex, useMediaQuery } from "@chakra-ui/react";
 
-import { BackgroundContainer, SimpleInput, SimpleText } from "../../components";
-import { ContaController } from "../../controllers";
+import { BackgroundContainer, SimpleInput } from "../../components";
 import { GlobalContext } from "../../context";
+import { MessageToast } from "../../services";
+import { ContaController } from "../../controllers";
 
 export default function AgendamentoPage() {
   const global = useContext(GlobalContext);
@@ -16,12 +16,27 @@ export default function AgendamentoPage() {
   const [cSenha, setCsenha] = useState<string>("");
   const [isLargerThan] = useMediaQuery("(min-width: 960px)");
 
+  const editarUsuario = async () => {
+    const objeto = {
+      nome: nome ?? "",
+      celular: celular ?? "",
+      email: email ?? "",
+      senha: senha ?? "",
+      codigo: global.user?.codigo,
+    };
+    if (senha === cSenha) {
+      const retorno = await ContaController.editarUsuario(objeto);
+    } else {
+      MessageToast.erro("As senhas não são iguais!");
+    }
+  };
+
   return (
     <BackgroundContainer
       rota={"/conta"}
       pageName={`Olá ${global.user?.nome}, edite sua conta aqui`}>
       <Flex w={"100%"} align={"center"} direction={"column"} h={"100vh"}>
-        <Flex align={"center"} w={"40%"} direction={"column"} mt={"40px"}>
+        <Flex align={"center"} w={isLargerThan ? "40%" : "100%"} direction={"column"} mt={"10px"}>
           <SimpleInput
             name={"Nome: "}
             label={"Digite seu nome"}
@@ -56,11 +71,11 @@ export default function AgendamentoPage() {
           />
           <Button
             w={"100%"}
-            mt={"40px"}
+            mt={"20px"}
             fontSize={isLargerThan ? 16 : 12}
             bg={"green.400"}
             color={"black"}
-            onClick={() => console.log("enviar")}>
+            onClick={() => editarUsuario()}>
             Enviar
           </Button>
         </Flex>

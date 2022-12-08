@@ -23,6 +23,7 @@ export default function AgendamentoPage() {
         data: data,
         horario: horario,
         local: local,
+        codigoUsuario: global.user?.codigo,
       };
       await AgendamentoController.criarAgendamento(objeto);
       MessageToast.sucesso("Agendamento feito com sucesso!");
@@ -35,7 +36,7 @@ export default function AgendamentoPage() {
   return (
     <BackgroundContainer pageName={"Novo agendamento"} rota={"/agendamento"}>
       <Flex w={"100%"} align={"center"} direction={"column"} h={"100vh"}>
-        <Flex w={"40%"} direction={"column"} align={"center"} mt={"60px"}>
+        <Flex w={isLargerThan ? "40%" : "100%"} direction={"column"} align={"center"} mt={"60px"}>
           <SimpleSelect
             name={"Data: "}
             label={"Selecione a data"}
