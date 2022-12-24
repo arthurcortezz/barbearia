@@ -12,10 +12,11 @@ interface Props {
 export default function BackgroundContainer({ children, rota, pageName }: Props) {
   return (
     <Flex
-      w={"100%"}
-      direction={"column"}
       bg={"rgba(0,0,0,0.1) url('bg.jpg')"}
       h={"100vh"}
+      position={"relative"}
+      bgPosition={"50% 50%"}
+      bgSize={"1000px cover"}
       overflow={"hidden"}>
       {rota ? (
         <Flex bg={"rgba(1,1,1,0.5)"} align={"center"} direction={"column"} p={"10px"}>

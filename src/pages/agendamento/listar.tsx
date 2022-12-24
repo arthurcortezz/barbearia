@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { BsTrashFill } from "react-icons/bs";
-import { Flex, Icon } from "@chakra-ui/react";
+import { Flex, Icon, Text } from "@chakra-ui/react";
 import { AiTwotoneEdit } from "react-icons/ai";
 
 import { MessageToast } from "../../services";
@@ -97,42 +97,49 @@ export default function AgendamentoPage() {
             </Flex>
             {array &&
               array.map((e: any, key: any) => (
-                <Flex
-                  key={key}
-                  justifyContent={"space-between"}
-                  border={"1px solid white"}
-                  p={"5px"}>
-                  <Flex w={"200px"}>
-                    <SimpleText fontSize={12} fontWeight={"200"} text={e.nome} />
-                  </Flex>
-                  <Flex w={"200px"}>
-                    <SimpleText fontSize={12} fontWeight={"200"} text={e.celular} />
-                  </Flex>
-                  <Flex w={"200px"}>
-                    <SimpleText fontSize={12} fontWeight={"200"} text={e.email} />
-                  </Flex>
-                  <Flex w={"200px"}>
-                    <SimpleText fontSize={12} fontWeight={"200"} text={e.data} />
-                  </Flex>
-                  <Flex w={"200px"}>
-                    <SimpleText fontSize={12} fontWeight={"200"} text={e.horario} />
-                  </Flex>
-                  <Flex w={"200px"}>
-                    <SimpleText fontSize={12} fontWeight={"200"} text={e.local} />
-                  </Flex>
-                  <Flex w={"100px"} justifyContent={"space-between"}>
-                    <Icon
-                      cursor={"pointer"}
-                      as={AiTwotoneEdit}
-                      onClick={() => editarAgendamento(e)}
-                    />
-                    <Icon
-                      cursor={"pointer"}
-                      as={BsTrashFill}
-                      onClick={() => deleteAgendamento(e.codigo)}
-                    />
-                  </Flex>
-                </Flex>
+                <>
+                  {(e.codigoUsuario === global.user?.codigo ||
+                    global.user?.permissao === "administrador") && (
+                    <Flex
+                      key={key}
+                      justifyContent={"space-between"}
+                      border={"1px solid white"}
+                      p={"5px"}>
+                      <Flex w={"200px"}>
+                        <SimpleText fontSize={12} fontWeight={"200"} text={e.nome} />
+                      </Flex>
+                      <Flex w={"200px"}>
+                        <SimpleText fontSize={12} fontWeight={"200"} text={e.celular} />
+                      </Flex>
+                      <Flex w={"200px"}>
+                        <SimpleText fontSize={12} fontWeight={"200"} text={e.email} />
+                      </Flex>
+                      <Flex w={"200px"}>
+                        <SimpleText fontSize={12} fontWeight={"200"} text={e.data} />
+                      </Flex>
+                      <Flex w={"200px"}>
+                        <SimpleText fontSize={12} fontWeight={"200"} text={e.horario} />
+                      </Flex>
+                      <Flex w={"200px"}>
+                        <SimpleText fontSize={12} fontWeight={"200"} text={e.local} />
+                      </Flex>
+                      <Flex w={"100px"} justifyContent={"space-between"}>
+                        <Icon
+                          title={"Alterar"}
+                          cursor={"pointer"}
+                          as={AiTwotoneEdit}
+                          onClick={() => editarAgendamento(e)}
+                        />
+                        <Icon
+                          title={"Excluir"}
+                          cursor={"pointer"}
+                          as={BsTrashFill}
+                          onClick={() => deleteAgendamento(e.codigo)}
+                        />
+                      </Flex>
+                    </Flex>
+                  )}
+                </>
               ))}
           </Flex>
         </Flex>

@@ -41,6 +41,7 @@ export default function AgendamentoPage() {
           />
           <SimpleInput
             name={"Celular: "}
+            mask={"(99) 9 9999-9999"}
             label={"Digite seu celular"}
             value={celular}
             onChange={(e: any) => setCelular(e.target.value)}

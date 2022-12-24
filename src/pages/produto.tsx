@@ -1,11 +1,12 @@
 import router from "next/router";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Input } from "@chakra-ui/react";
 
 import { BackgroundContainer, PageBackButton, ServicoContainer, SimpleText } from "../components";
+import InputMask from "react-input-mask";
 
 export default function AgendamentoPage() {
   return (
-    <BackgroundContainer rota={"/"} pageName={"Serviços"}>
+    <BackgroundContainer rota={"/"} pageName={"Produtos"}>
       <Flex w={"100%"} align={"start"} direction={"row"} h={"100vh"} justify={"center"}>
         <ServicoContainer valor={"40,00"} alt={"midia1"} src={"servicos.webp"} />
         <ServicoContainer

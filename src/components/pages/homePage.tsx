@@ -18,7 +18,6 @@ let linkList: Array<linksUrls> = [
   { url: "produto", text: "PRODUTOS" },
   { url: "equipe", text: "EQUIPE" },
   { url: "clientes", text: "CLIENTES" },
-  { url: "", text: "", image: true },
   { url: "midia", text: "MÍDIA" },
   { url: "agendamento", text: "AGENDAMENTO" },
   { url: "conta", text: "CONTA" },
@@ -48,7 +47,7 @@ export default function HomePage() {
           )}
         </NavbarContainer>
         <Flex w={"100%"} direction={"column"} mt={"140px"}>
-          <SimpleText fontSize={isLargerThan ? 20 : 16} text={"BARBEARIA BLACK JACK"} />
+          <SimpleText fontSize={isLargerThan ? 20 : 16} text={"BARBEARIA"} />
           {isLargerThan && (
             <SimpleText
               fontSize={isLargerThan ? 20 : 16}
@@ -92,7 +91,11 @@ export default function HomePage() {
               />
               <SimpleText
                 fontSize={isLargerThan ? 12 : 8}
-                text="Rua Quintino Bocaiúva, 1481, Pajuçara"
+                text="Rua Tal Tal Tal, Nº 9999, Ponta Verde"
+              />
+              <SimpleText
+                fontSize={isLargerThan ? 12 : 8}
+                text="Rua Tal Tal Tal, Nº 7777, Eustáquio Gomes"
               />
               <SimpleText
                 fontSize={isLargerThan ? 12 : 8}
@@ -106,7 +109,8 @@ export default function HomePage() {
                 p={isLargerThan ? "10px" : "6px"}
                 text="AGENDE SEU HORARIO"
               />
-              <SimpleText fontSize={isLargerThan ? 12 : 8} text="(82) 3205-0415" />
+              <SimpleText fontSize={isLargerThan ? 12 : 8} text="(82) 3333-3333" />
+              <SimpleText fontSize={isLargerThan ? 12 : 8} text="(82) 9 9999-9999" />
               <SimpleText fontSize={isLargerThan ? 12 : 8} text="Estacionamento gratuito" />
             </Flex>
           </Flex>

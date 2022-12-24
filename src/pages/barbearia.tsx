@@ -26,14 +26,14 @@ export default function AgendamentoPage() {
               mx={"10px"}
             />
             <Flex mt={"40px"} w={"80%"} align={"left"} direction={"column"}>
-              <TextContainer text={"A barbearia black jack foi inaugurada em 2019."} />
+              <TextContainer text={"A barbearia barbearia foi inaugurada em 2019."} />
               <TextContainer text={"Contamos com uma equipe bastante especializada."} />
               <TextContainer
                 text={"Temos duas unidades, a unidade Ponta Verde, e a unidade Eustáquio Gomes"}
               />
               <TextContainer
                 text={
-                  "Na Black Jack oferecemos mais que barba, cabelo e bigode. Aqui você encontra e faz amigos, assiste futebol, tem cerveja gelada e muito mais. Venha fazer parte da nossa familia e entenda porquê somos o lugar para grandes homens."
+                  "Na barbearia oferecemos mais que barba, cabelo e bigode. Aqui você encontra e faz amigos, assiste futebol, tem cerveja gelada e muito mais. Venha fazer parte da nossa familia e entenda porquê somos o lugar para grandes homens."
                 }
               />
             </Flex>
